@@ -16,8 +16,9 @@ ACCENT = "#18765a"
 LINE = "#cfd7cc"
 LINK_BLUE = "#155fb8"
 REPO_URL = "https://github.com/rubencorrob-sudo/generador-recetas-inventario"
-PROD_URL = "https://recetasruben.duckdns.org"
-DOCS_URL = "https://recetasruben.duckdns.org/docs"
+PROD_URL = "https://54-236-36-56.sslip.io"
+DOCS_URL = "https://54-236-36-56.sslip.io/docs"
+DUCKDNS_URL = "https://recetasruben.duckdns.org"
 TEAM_MEMBERS = [
     "Sean Paul Marquez Toro",
     "Reyner David Barbosa de la Rosa",
@@ -92,18 +93,19 @@ def page_architecture():
     draw.text((72, 70), "Generador de Recetas con Inventario", fill=INK, font=F_TITLE)
     draw.text((72, 130), "Informe tecnico de entrega", fill=ACCENT, font=F_H2)
 
-    rounded_box(draw, (72, 190, 1168, 460), fill="#ffffff", radius=14)
+    rounded_box(draw, (72, 190, 1168, 490), fill="#ffffff", radius=14)
     draw.text((96, 212), "Entregables principales", fill=INK, font=F_H2)
     draw_link(draw, 0, 96, 248, "Repositorio GitHub", REPO_URL)
     draw_link(draw, 0, 96, 278, "Aplicacion en produccion", PROD_URL)
     draw_link(draw, 0, 96, 308, "Documentacion Swagger", DOCS_URL)
-    draw.text((96, 350), "Integrantes", fill=INK, font=F_H2)
-    member_y = 386
+    draw_link(draw, 0, 96, 338, "Dominio DuckDNS alterno", DUCKDNS_URL)
+    draw.text((96, 380), "Integrantes", fill=INK, font=F_H2)
+    member_y = 416
     for member in TEAM_MEMBERS:
         draw.text((112, member_y), f"- {member}", fill=INK, font=F_SMALL_BOLD)
         member_y += 28
 
-    y = 510
+    y = 540
     y = text(
         draw,
         (72, y),

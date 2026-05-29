@@ -1,5 +1,9 @@
-{$DOMAIN} {
+{$DOMAIN}, 54-236-36-56.sslip.io, 54.236.36.56.sslip.io {
   encode gzip
   reverse_proxy app:8000
 }
 
+http://54.236.36.56 {
+  encode gzip
+  reverse_proxy app:8000
+}
