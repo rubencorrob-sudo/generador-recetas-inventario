@@ -1,6 +1,7 @@
 from pathlib import Path
 from textwrap import wrap
 
+import fitz
 from PIL import Image, ImageDraw, ImageFont, ImageOps
 
 
@@ -13,6 +14,16 @@ INK = "#20231f"
 MUTED = "#5f665c"
 ACCENT = "#18765a"
 LINE = "#cfd7cc"
+LINK_BLUE = "#155fb8"
+REPO_URL = "https://github.com/rubencorrob-sudo/generador-recetas-inventario"
+PROD_URL = "https://recetasruben.duckdns.org"
+DOCS_URL = "https://recetasruben.duckdns.org/docs"
+TEAM_MEMBERS = [
+    "Sean Paul Marquez Toro",
+    "Reyner David Barbosa de la Rosa",
+    "Ruben Andres Corro Blanco",
+]
+PDF_LINKS = []
 
 
 def font(size: int, bold: bool = False) -> ImageFont.FreeTypeFont:
@@ -55,6 +66,13 @@ def rounded_box(draw, box, fill="#ffffff", outline=LINE, radius=14):
     draw.rounded_rectangle(box, radius=radius, fill=fill, outline=outline, width=2)
 
 
+def draw_link(draw, page_index: int, x: int, y: int, label: str, url: str):
+    value = f"{label}: {url}"
+    draw.text((x, y), value, fill=LINK_BLUE, font=F_SMALL_BOLD)
+    width = draw.textlength(value, font=F_SMALL_BOLD)
+    PDF_LINKS.append((page_index, (x, y, x + width, y + F_SMALL_BOLD.size + 8), url))
+
+
 def diagram_box(draw, xy, label, color="#ffffff"):
     x, y, w, h = xy
     rounded_box(draw, (x, y, x + w, y + h), fill=color, radius=12)
@@ -74,7 +92,18 @@ def page_architecture():
     draw.text((72, 70), "Generador de Recetas con Inventario", fill=INK, font=F_TITLE)
     draw.text((72, 130), "Informe tecnico de entrega", fill=ACCENT, font=F_H2)
 
-    y = 210
+    rounded_box(draw, (72, 190, 1168, 460), fill="#ffffff", radius=14)
+    draw.text((96, 212), "Entregables principales", fill=INK, font=F_H2)
+    draw_link(draw, 0, 96, 248, "Repositorio GitHub", REPO_URL)
+    draw_link(draw, 0, 96, 278, "Aplicacion en produccion", PROD_URL)
+    draw_link(draw, 0, 96, 308, "Documentacion Swagger", DOCS_URL)
+    draw.text((96, 350), "Integrantes", fill=INK, font=F_H2)
+    member_y = 386
+    for member in TEAM_MEMBERS:
+        draw.text((112, member_y), f"- {member}", fill=INK, font=F_SMALL_BOLD)
+        member_y += 28
+
+    y = 510
     y = text(
         draw,
         (72, y),
@@ -113,7 +142,7 @@ def page_architecture():
 
     draw.text(
         (72, 1640),
-        "Repositorio: completar al publicar | Produccion HTTPS: completar al desplegar",
+        "Los enlaces de repositorio, produccion y Swagger estan en la primera pagina.",
         fill=MUTED,
         font=F_SMALL,
     )
@@ -211,4 +240,21 @@ def page_screenshots():
 pages = [page_architecture(), page_er(), page_screenshots()]
 OUT.parent.mkdir(parents=True, exist_ok=True)
 pages[0].save(OUT, "PDF", resolution=150, save_all=True, append_images=pages[1:])
+doc = fitz.open(OUT)
+for page_index, rect, uri in PDF_LINKS:
+    page = doc[page_index]
+    sx = page.rect.width / PAGE_SIZE[0]
+    sy = page.rect.height / PAGE_SIZE[1]
+    x0, y0, x1, y1 = rect
+    page.insert_link(
+        {
+            "kind": fitz.LINK_URI,
+            "from": fitz.Rect(x0 * sx, y0 * sy, x1 * sx, y1 * sy),
+            "uri": uri,
+        }
+    )
+linked_out = OUT.with_suffix(".linked.pdf")
+doc.save(linked_out, deflate=True)
+doc.close()
+linked_out.replace(OUT)
 print(OUT)

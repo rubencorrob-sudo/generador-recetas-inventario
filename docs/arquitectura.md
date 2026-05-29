@@ -1,5 +1,18 @@
 # Informe del proyecto: Generador de Recetas con Inventario
 
+## Integrantes
+
+- Sean Paul Marquez Toro
+- Reyner David Barbosa de la Rosa
+- Ruben Andres Corro Blanco
+
+## Entregables
+
+- Repositorio publico: https://github.com/rubencorrob-sudo/generador-recetas-inventario
+- Aplicacion en produccion con HTTPS: https://recetasruben.duckdns.org
+- Swagger/OpenAPI: https://recetasruben.duckdns.org/docs
+- PDF de entrega: `docs/informe-proyecto-recetas.pdf`
+
 ## Arquitectura
 
 La aplicacion usa una arquitectura monolitica modular con FastAPI. El frontend se sirve desde el mismo backend mediante Jinja2, CSS y JavaScript vanilla, con una experiencia tipo dashboard y assets fotograficos propios. El navegador consume la API REST con JWT en el encabezado `Authorization`.

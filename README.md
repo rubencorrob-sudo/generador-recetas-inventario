@@ -2,6 +2,12 @@
 
 Aplicacion web del proyecto final de Tecnologias Web. Permite registrar ingredientes disponibles en casa, generar recetas estructuradas con un LLM y guardar el historial con calificaciones, favoritos, filtros y resumen del inventario.
 
+## Integrantes
+
+- Sean Paul Marquez Toro
+- Reyner David Barbosa de la Rosa
+- Ruben Andres Corro Blanco
+
 ## Stack
 
 - Python 3.12 + FastAPI
@@ -146,9 +152,10 @@ erDiagram
 
 ## Entregables
 
-- URL del repositorio publico.
-- URL de la aplicacion en produccion con HTTPS.
-- PDF de maximo 3 paginas con arquitectura, diagrama ER, decisiones tecnicas y capturas.
+- Repositorio publico: https://github.com/rubencorrob-sudo/generador-recetas-inventario
+- Aplicacion en produccion con HTTPS: https://recetasruben.duckdns.org
+- Swagger/OpenAPI: https://recetasruben.duckdns.org/docs
+- PDF de maximo 3 paginas: `docs/informe-proyecto-recetas.pdf`
 
 ## Notas para la sustentacion
 
