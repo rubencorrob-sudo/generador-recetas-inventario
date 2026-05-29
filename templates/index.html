@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ app_name }}</title>
+    <link rel="icon" href="/static/favicon.ico">
+    <link rel="stylesheet" href="/static/styles.css">
+    <script defer src="/static/app.js"></script>
+  </head>
+  <body>
+    <header class="topbar visual-hero">
+      <div class="hero-copy">
+        <p class="eyebrow">Inventario + LLM</p>
+        <h1>{{ app_name }}</h1>
+        <p class="hero-subtitle">Convierte lo que tienes en casa en recetas completas, calificables y listas para guardar.</p>
+      </div>
+      <div class="session">
+        <span id="session-label">Sin sesion</span>
+        <button id="logout-button" class="ghost hidden" type="button">Salir</button>
+      </div>
+    </header>
+
+    <main>
+      <section id="auth-view" class="auth-grid">
+        <form id="login-form" class="panel">
+          <h2>Iniciar sesion</h2>
+          <label>
+            Correo
+            <input name="email" type="email" autocomplete="email" required>
+          </label>
+          <label>
+            Contrasena
+            <input name="password" type="password" autocomplete="current-password" required>
+          </label>
+          <button type="submit">Entrar</button>
+        </form>
+
+        <form id="register-form" class="panel">
+          <h2>Crear cuenta</h2>
+          <label>
+            Nombre
+            <input name="full_name" type="text" autocomplete="name">
+          </label>
+          <label>
+            Correo
+            <input name="email" type="email" autocomplete="email" required>
+          </label>
+          <label>
+            Contrasena
+            <input name="password" type="password" autocomplete="new-password" minlength="8" required>
+          </label>
+          <button type="submit">Registrarme</button>
+        </form>
+      </section>
+
+      <section id="app-view" class="app-shell hidden">
+        <section class="metrics">
+          <article>
+            <span id="metric-items">0</span>
+            <p>ingredientes</p>
+          </article>
+          <article>
+            <span id="metric-score">0%</span>
+            <p>score inventario</p>
+          </article>
+          <article>
+            <span id="metric-recipes">0</span>
+            <p>recetas guardadas</p>
+          </article>
+          <article>
+            <span id="metric-favorites">0</span>
+            <p>favoritas</p>
+          </article>
+        </section>
+
+        <section class="workspace">
+          <aside class="panel inventory-panel">
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow">Inventario personal</p>
+                <h2>Ingredientes</h2>
+            </div>
+            <span id="ingredient-count" class="count">0</span>
+          </div>
+
+            <img class="inventory-photo" src="/static/images/inventory-pantry.jpg" alt="Despensa organizada con ingredientes">
+            <div id="inventory-insights" class="insights"></div>
+
+            <form id="ingredient-form" class="ingredient-form">
+              <input name="name" type="text" placeholder="Ingrediente" required>
+              <div class="row">
+                <input name="quantity" type="number" min="0.01" step="0.01" placeholder="Cantidad" required>
+                <input name="unit" type="text" placeholder="Unidad" value="unidad" required>
+              </div>
+              <textarea name="notes" rows="2" placeholder="Notas opcionales"></textarea>
+              <div class="actions">
+                <button id="save-ingredient-button" type="submit">Guardar</button>
+                <button id="cancel-edit-button" class="ghost hidden" type="button">Cancelar</button>
+              </div>
+            </form>
+
+            <div class="quick-pantry">
+              <p class="eyebrow">Canasta familiar</p>
+              <div id="quick-pantry-list" class="quick-pantry-list"></div>
+            </div>
+
+            <div id="ingredients-list" class="list"></div>
+          </aside>
+
+          <section class="recipes-area">
+            <form id="generator-form" class="panel generator">
+              <div class="generator-head">
+                <div>
+                  <p class="eyebrow">Receta nueva</p>
+                  <h2>Generador inteligente</h2>
+                </div>
+                <button id="generate-button" type="submit">Generar receta IA</button>
+              </div>
+
+              <div class="generator-grid">
+                <label>
+                  Porciones
+                  <input name="servings" type="number" min="1" max="12" value="2">
+                </label>
+                <label>
+                  Comida
+                  <select name="meal_type">
+                    <option value="almuerzo">Almuerzo</option>
+                    <option value="desayuno">Desayuno</option>
+                    <option value="cena">Cena</option>
+                    <option value="snack">Snack</option>
+                  </select>
+                </label>
+                <label>
+                  Objetivo
+                  <select name="objective">
+                    <option value="rapida y sabrosa">Rapida y sabrosa</option>
+                    <option value="economica">Economica</option>
+                    <option value="alta en proteina">Alta en proteina</option>
+                    <option value="saludable y ligera">Saludable y ligera</option>
+                  </select>
+                </label>
+                <label>
+                  Tiempo max.
+                  <input name="max_time_minutes" type="number" min="5" max="240" value="35">
+                </label>
+                <label>
+                  Estilo
+                  <input name="cuisine" type="text" placeholder="Costeno, italiano, mexicano...">
+                </label>
+                <label>
+                  Restricciones
+                  <input name="dietary_restrictions" type="text" placeholder="sin lactosa, vegetariana...">
+                </label>
+              </div>
+
+              <label>
+                Instrucciones extra
+                <textarea name="extra_instructions" rows="2" placeholder="Ej: que sea para llevar, que use una sola olla"></textarea>
+              </label>
+              <label class="toggle">
+                <input name="strict_inventory" type="checkbox" checked>
+                Priorizar solo lo que tengo en casa
+              </label>
+            </form>
+
+            <section class="recommendations-block">
+              <div class="section-heading">
+                <div>
+                  <p class="eyebrow">Sugerencias automaticas</p>
+                  <h2>Recetas recomendadas</h2>
+                </div>
+              </div>
+              <div id="recommendations-list" class="recommendation-grid"></div>
+            </section>
+
+            <div class="panel filters">
+              <input id="recipe-search" type="search" placeholder="Buscar en el historial">
+              <label class="toggle">
+                <input id="favorites-only" type="checkbox">
+                Solo favoritas
+              </label>
+            </div>
+
+            <div id="recipes-list" class="recipe-grid"></div>
+          </section>
+        </section>
+      </section>
+
+      <div id="toast" class="toast hidden" role="status"></div>
+    </main>
+  </body>
+</html>

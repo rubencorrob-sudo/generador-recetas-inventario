@@ -1,0 +1,2 @@
+"""Recipe inventory generator application."""
+

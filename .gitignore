@@ -1,0 +1,13 @@
+.DS_Store
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+.env
+recipe_app.db
+htmlcov/
+.coverage
+dist/
+build/
+
