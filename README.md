@@ -189,3 +189,4 @@ erDiagram
 - Confirmar que las variables del archivo `.env` estén correctamente configuradas.
 - Revisar los logs de Docker Compose cuando un servicio no inicie correctamente.
 - Comprobar la conectividad con la base de datos si la aplicación presenta errores de persistencia.
+Actualizaci�n realizada 06/04/2026 19:06:50
