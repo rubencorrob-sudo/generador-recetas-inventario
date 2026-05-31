@@ -191,3 +191,4 @@ erDiagram
 - Comprobar la conectividad con la base de datos si la aplicaciÃ³n presenta errores de persistencia.
 Actualización realizada 06/04/2026 19:06:50
 Cambio 1
+Cambio 2
