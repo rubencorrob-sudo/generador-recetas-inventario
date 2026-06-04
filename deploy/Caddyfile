@@ -1,9 +1,17 @@
+{
+  servers :443 {
+    protocols h1 h2
+  }
+}
+
 {$DOMAIN}, recetasruben.xyz, www.recetasruben.xyz, 54-236-36-56.sslip.io, 54.236.36.56.sslip.io {
   encode gzip
+  header -Alt-Svc
   reverse_proxy app:8000
 }
 
 http://54.236.36.56 {
   encode gzip
+  header -Alt-Svc
   reverse_proxy app:8000
 }
