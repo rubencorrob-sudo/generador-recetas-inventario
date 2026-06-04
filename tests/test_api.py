@@ -11,6 +11,16 @@ def test_home_page_renders_login_forms(client):
     assert "Crear cuenta" in response.text
 
 
+def test_health_endpoint_reports_service_status(client):
+    response = client.get("/health")
+
+    assert response.status_code == 200
+    assert response.json() == {
+        "status": "ok",
+        "service": "Generador de Recetas con Inventario",
+    }
+
+
 def test_register_login_and_create_ingredient(client):
     register = client.post(
         "/api/auth/register",

@@ -26,3 +26,8 @@ app.include_router(pages.router)
 app.include_router(auth.router)
 app.include_router(ingredients.router)
 app.include_router(recipes.router)
+
+
+@app.get("/health", tags=["system"])
+def health() -> dict[str, str]:
+    return {"status": "ok", "service": "Generador de Recetas con Inventario"}
