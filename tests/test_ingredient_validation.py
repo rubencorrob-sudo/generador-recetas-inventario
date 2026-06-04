@@ -2,7 +2,8 @@ import pytest
 from pydantic import ValidationError
 
 from app.schemas.ingredient import IngredientCreate
-
+# Validaciones de datos para ingredientes antes de ser almacenados
+# en el inventario de la aplicación.
 
 def test_ingredient_name_cannot_be_blank():
     with pytest.raises(ValidationError):
