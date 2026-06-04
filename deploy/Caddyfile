@@ -1,4 +1,4 @@
-{$DOMAIN}, recetasruben.com, www.recetasruben.com, 54-236-36-56.sslip.io, 54.236.36.56.sslip.io {
+{$DOMAIN}, recetasruben.xyz, www.recetasruben.xyz, 54-236-36-56.sslip.io, 54.236.36.56.sslip.io {
   encode gzip
   reverse_proxy app:8000
 }
