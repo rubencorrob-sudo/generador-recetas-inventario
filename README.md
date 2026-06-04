@@ -182,3 +182,10 @@ erDiagram
 - Verificar la vigencia de las claves y variables de entorno.
 - Realizar copias de seguridad de la base de datos en producción.
 - Revisar los logs de la aplicación para detectar errores tempranamente.
+
+## Solucion de problemas
+
+- Verificar que Docker se encuentre en ejecución antes de iniciar los servicios.
+- Confirmar que las variables del archivo `.env` estén correctamente configuradas.
+- Revisar los logs de Docker Compose cuando un servicio no inicie correctamente.
+- Comprobar la conectividad con la base de datos si la aplicación presenta errores de persistencia.
