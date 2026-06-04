@@ -167,6 +167,7 @@ erDiagram
 - Los assets visuales de la app estan en `static/images/` y las capturas de sustentacion en `docs/screenshots/`.
 - No hay credenciales reales en el repositorio. Usa `.env` en local/produccion.
 - Cada integrante debe registrar al menos 10 commits descriptivos para evitar penalizacion individual.
+
 ## Flujo de uso recomendado
 
 1. Registrar los ingredientes disponibles en el inventario.
@@ -174,3 +175,10 @@ erDiagram
 3. Revisar las recomendaciones automáticas basadas en compatibilidad.
 4. Generar una receta completa utilizando el LLM.
 5. Calificar o marcar como favorita la receta obtenida para futuras consultas.
+
+## Mantenimiento
+
+- Actualizar periódicamente las dependencias del proyecto.
+- Verificar la vigencia de las claves y variables de entorno.
+- Realizar copias de seguridad de la base de datos en producción.
+- Revisar los logs de la aplicación para detectar errores tempranamente.
