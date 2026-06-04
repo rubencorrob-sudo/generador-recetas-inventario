@@ -1,4 +1,5 @@
 from fastapi import APIRouter, Depends, HTTPException, status
+from sqlalchemy.exc import IntegrityError
 from sqlalchemy import select
 from sqlalchemy.orm import Session
 
@@ -28,7 +29,11 @@ def register(payload: UserCreate, db: Session = Depends(get_db)) -> Token:
         password_hash=hash_password(payload.password),
     )
     db.add(user)
-    db.commit()
+    try:
+        db.commit()
+    except IntegrityError:
+        db.rollback()
+        raise HTTPException(status_code=409, detail="El correo ya esta registrado") from None
     db.refresh(user)
     return _token_for_user(user)
 
@@ -44,4 +49,3 @@ def login(payload: UserLogin, db: Session = Depends(get_db)) -> Token:
 @router.get("/me", response_model=UserRead)
 def me(current_user: User = Depends(get_current_user)) -> User:
     return current_user
-
