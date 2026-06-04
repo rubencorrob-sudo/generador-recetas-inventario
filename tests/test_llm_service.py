@@ -8,7 +8,8 @@ from app.services.llm_service import (
     parse_recipe_response,
 )
 from app.schemas.recipe import RecipeGenerateRequest
-
+# Pruebas unitarias para la construcción de prompts y validación
+# de respuestas estructuradas generadas por el servicio LLM.
 
 def test_build_recipe_prompt_contains_inventory_and_json_contract():
     prompt = build_recipe_prompt(
