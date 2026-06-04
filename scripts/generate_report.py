@@ -16,9 +16,9 @@ ACCENT = "#18765a"
 LINE = "#cfd7cc"
 LINK_BLUE = "#155fb8"
 REPO_URL = "https://github.com/rubencorrob-sudo/generador-recetas-inventario"
-PROD_URL = "https://54-236-36-56.sslip.io"
-DOCS_URL = "https://54-236-36-56.sslip.io/docs"
-DUCKDNS_URL = "https://recetasruben.duckdns.org"
+PROD_URL = "https://www.recetasruben.xyz"
+DOCS_URL = "https://www.recetasruben.xyz/docs"
+BACKUP_URL = "https://54-236-36-56.sslip.io"
 TEAM_MEMBERS = [
     "Sean Paul Marquez Toro",
     "Reyner David Barbosa de la Rosa",
@@ -98,7 +98,7 @@ def page_architecture():
     draw_link(draw, 0, 96, 248, "Repositorio GitHub", REPO_URL)
     draw_link(draw, 0, 96, 278, "Aplicacion en produccion", PROD_URL)
     draw_link(draw, 0, 96, 308, "Documentacion Swagger", DOCS_URL)
-    draw_link(draw, 0, 96, 338, "Dominio DuckDNS alterno", DUCKDNS_URL)
+    draw_link(draw, 0, 96, 338, "URL de respaldo", BACKUP_URL)
     draw.text((96, 380), "Integrantes", fill=INK, font=F_H2)
     member_y = 416
     for member in TEAM_MEMBERS:

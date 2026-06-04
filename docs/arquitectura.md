@@ -9,9 +9,9 @@
 ## Entregables
 
 - Repositorio publico: https://github.com/rubencorrob-sudo/generador-recetas-inventario
-- Aplicacion en produccion con HTTPS: https://54-236-36-56.sslip.io
-- Swagger/OpenAPI: https://54-236-36-56.sslip.io/docs
-- Dominio alterno DuckDNS: https://recetasruben.duckdns.org
+- Aplicacion en produccion con HTTPS: https://www.recetasruben.xyz
+- Swagger/OpenAPI: https://www.recetasruben.xyz/docs
+- URL tecnica de respaldo: https://54-236-36-56.sslip.io
 - PDF de entrega: `docs/informe-proyecto-recetas.pdf`
 
 ## Arquitectura
