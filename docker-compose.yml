@@ -35,8 +35,8 @@ services:
     image: caddy:2-alpine
     restart: unless-stopped
     ports:
-      - "80:80"
-      - "443:443"
+      - "80:80/tcp"
+      - "443:443/tcp"
     environment:
       DOMAIN: ${DOMAIN:-localhost}
     volumes:
@@ -50,4 +50,3 @@ volumes:
   postgres_data:
   caddy_data:
   caddy_config:
-
