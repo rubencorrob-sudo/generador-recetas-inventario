@@ -118,6 +118,11 @@ Incluir en el PDF final:
 - Seccion de recomendaciones con desglose de ingredientes.
 - Botones rapidos para cargar inventario desde productos frecuentes de canasta.
 - Swagger en `/docs` como evidencia de endpoints documentados.
+
 ## Consideraciones de escalabilidad
 
 La arquitectura fue diseñada para permitir una futura separación de servicios sin cambios significativos en la lógica de negocio. El servicio de generación de recetas basado en LLM puede migrarse a un microservicio independiente, mientras que PostgreSQL puede escalar mediante réplicas de lectura. Docker Compose facilita la administración de los servicios y simplifica el despliegue en diferentes entornos.
+
+## Seguridad
+
+La aplicación implementa autenticación basada en JWT para proteger los endpoints privados. Las credenciales sensibles se almacenan mediante variables de entorno y no se incluyen en el repositorio. Además, la comunicación en producción utiliza HTTPS para proteger la información transmitida entre el cliente y el servidor.
