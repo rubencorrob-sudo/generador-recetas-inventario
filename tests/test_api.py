@@ -1,6 +1,7 @@
 from app.schemas.recipe import GeneratedRecipe
 from app.services.llm_service import LLMRecipeResult
-
+# Pruebas de integración para autenticación, inventario,
+# generación de recetas, favoritos y recomendaciones.
 
 def test_home_page_renders_login_forms(client):
     response = client.get("/")
